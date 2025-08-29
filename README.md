@@ -4,9 +4,7 @@
 BookIt is a web-based accommodation rental platform designed to connect tenants with property owners, offering a local alternative to global rental services. Unlike traditional models, BookIt emphasizes:
 
 🌍 Accessibility for local communities
-
 ⚡ Seamless user experience
-
 🔒 Secure transaction processing
 
 The platform enables users to list properties, book rentals, and make payments through a responsive and secure interface.
@@ -19,7 +17,7 @@ The platform enables users to list properties, book rentals, and make payments t
 ✅ Payment Integration – Secure processing (e.g., EcoCash, Mastercard)
 ✅ Responsive Design – Works across desktop and mobile devices
 
-🛠️ Tech Stack
+# 🛠️ Tech Stack
 
 Frontend: HTML, CSS, JavaScript (React planned for future)
 Backend: PHP, SQL (MySQL)
