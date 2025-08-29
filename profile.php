@@ -16,7 +16,7 @@ $stmt->fetch();
 $stmt->close();
 
 if ($count == 0) {
-    $insert = $conn->prepare("INSERT INTO profile (id, first_name, last_name, username, bio, profile_pic) VALUES (?, '', '', '', '', '')");
+    $insert = $conn->prepare("INSERT INTO profile (id, first_name, last_name, username, bio, profile_pic) VALUES (?, '', '', NULL, '', '')");
     $insert->bind_param("i", $user_id);
     $insert->execute();
     $insert->close();
