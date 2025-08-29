@@ -1,0 +1,235 @@
+<form method="POST" action="payment_method.php">
+  <main class="max-w-3xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
+    <div class="mb-8">
+      <!-- Hidden inputs -->
+      <input type="hidden" name="listing_id" value="<?= htmlspecialchars($listing_id) ?>">
+      <input type="hidden" name="owner_id" value="<?= htmlspecialchars($owner_id) ?>">
+      <input type="hidden" name="payment_method_id" id="selected-payment-method" value="">
+
+      <h1 class="text-3xl font-bold text-gray-900">Payment Methods</h1>
+      <p class="mt-2 text-gray-600">Choose your preferred payment method to complete your booking</p>
+    </div>
+
+    <div class="bg-white shadow rounded-lg overflow-hidden mb-8">
+      <div class="p-6">
+        <div class="flex flex-col sm:flex-row gap-4 mb-8">
+          <!-- Mastercard -->
+          <div class="payment-option flex-1 border rounded-lg p-4 cursor-pointer hover:border-primary transition-colors" data-method="mastercard">
+            <div class="flex items-center">
+              <div class="w-6 h-6 flex items-center justify-center mr-3">
+                <i class="ri-mastercard-fill text-xl"></i>
+              </div>
+              <div class="flex-1">
+                <h3 class="font-medium text-gray-900">Mastercard</h3>
+                <p class="text-sm text-gray-500">Pay with credit or debit card</p>
+              </div>
+              <div class="payment-radio w-5 h-5 border-2 border-gray-300 rounded-full flex items-center justify-center">
+                <div class="payment-radio-dot hidden w-3 h-3 bg-primary rounded-full"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- EcoCash -->
+          <div class="payment-option flex-1 border rounded-lg p-4 cursor-pointer hover:border-primary transition-colors" data-method="ecocash">
+            <div class="flex items-center">
+              <div class="w-6 h-6 flex items-center justify-center mr-3">
+                <i class="ri-wallet-3-fill text-xl"></i>
+              </div>
+              <div class="flex-1">
+                <h3 class="font-medium text-gray-900">EcoCash</h3>
+                <span class="text-sm text-gray-500">Mobile money</span>
+              </div>
+              <div class="payment-radio w-5 h-5 border-2 border-gray-300 rounded-full flex items-center justify-center">
+                <div class="payment-radio-dot hidden w-3 h-3 bg-primary rounded-full"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mastercard Form -->
+        <div id="mastercard-form" class="payment-form hidden">
+          <div class="mb-6">
+            <div class="flex justify-between mb-4">
+              <h3 class="text-lg font-medium text-gray-900">Card Details</h3>
+              <div class="flex items-center text-sm text-gray-600">
+                <i class="ri-lock-line mr-1"></i><span>SSL Encrypted</span>
+              </div>
+            </div>
+
+            <div class="space-y-4">
+              <div>
+                <label for="card-number" class="block text-sm font-medium text-gray-700 mb-1">Card Number</label>
+                <div class="relative">
+                  <input type="text" name="card_number" id="card-number" class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary text-gray-900 placeholder-gray-400" placeholder="1234 5678 9012 3456" maxlength="19">
+                  <div class="absolute right-3 top-1/2 transform -translate-y-1/2 w-6 h-6 flex items-center justify-center">
+                    <i class="ri-mastercard-fill text-xl"></i>
+                  </div>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-2 gap-4">
+                <div>
+                  <label for="expiry-date" class="block text-sm font-medium text-gray-700 mb-1">Expiration Date</label>
+                  <input type="text" name="expiry_date" id="expiry-date" class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary text-gray-900 placeholder-gray-400" placeholder="MM/YY" maxlength="5">
+                </div>
+                <div>
+                  <label for="cvv" class="block text-sm font-medium text-gray-700 mb-1">CVV</label>
+                  <input type="text" name="cvv" id="cvv" class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary text-gray-900 placeholder-gray-400" placeholder="123" maxlength="3">
+                </div>
+              </div>
+
+              <div>
+                <label for="cardholder-name" class="block text-sm font-medium text-gray-700 mb-1">Cardholder Name</label>
+                <input type="text" name="cardholder_name" id="cardholder-name" class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary text-gray-900 placeholder-gray-400" placeholder="Name on card">
+              </div>
+
+              <div>
+                <label for="amount" class="block text-sm font-medium text-gray-700 mb-1">Amount</label>
+                <input type="number" name="amount" step="0.01" id="amount" class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary text-gray-900 placeholder-gray-400" placeholder="Enter amount">
+              </div>
+            </div>
+          </div>
+
+          <div class="border-t border-gray-200 pt-6">
+            <button type="submit" class="w-full bg-blue-600 text-white py-3 px-6 rounded font-medium hover:bg-blue-700">
+              Pay Now
+            </button>
+          </div>
+        </div>
+
+        <!-- EcoCash Form -->
+        <div id="ecocash-form" class="payment-form hidden">
+          <div class="mb-6">
+            <div class="flex justify-between mb-4">
+              <h3 class="text-lg font-medium text-gray-900">EcoCash Payment</h3>
+              <div class="flex items-center text-sm text-gray-600">
+                <i class="ri-lock-line mr-1"></i><span>Secure Payment</span>
+              </div>
+            </div>
+
+            <div class="space-y-4">
+              <div>
+                <label for="phone-number" class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                <div class="relative">
+                  <input type="tel" name="phone_number" id="phone-number" class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary text-gray-900 placeholder-gray-400" placeholder="07X XXX XXXX" maxlength="10">
+                  <div class="absolute right-3 top-1/2 transform -translate-y-1/2">
+                    <i class="ri-phone-line"></i>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <label for="amount-ecocash" class="block text-sm font-medium text-gray-700 mb-1">Amount to Pay</label>
+                <div class="relative">
+                  <input type="number" name="amount" step="0.01" id="amount-ecocash" class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary text-gray-900 placeholder-gray-400" placeholder="Enter amount">
+                  <div class="absolute right-3 top-1/2 transform -translate-y-1/2">
+                    <i class="ri-money-dollar-circle-line"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="border-t border-gray-200 pt-6">
+            <button type="submit" class="w-full bg-blue-600 text-white py-3 px-6 rounded font-medium hover:bg-blue-700">
+              Pay with EcoCash
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center text-sm text-gray-500">
+      <p>Need help? <a href="about.php" class="text-blue-600 hover:text-blue-500">Contact our support team</a></p>
+    </div>
+  </main>
+</form>
+
+<!-- Payment Toggle Script -->
+<script>
+  const options = document.querySelectorAll('.payment-option');
+  const methodInput = document.getElementById('selected-payment-method');
+  const mastercardForm = document.getElementById('mastercard-form');
+  const ecocashForm = document.getElementById('ecocash-form');
+
+  options.forEach(option => {
+    option.addEventListener('click', () => {
+      options.forEach(opt => {
+        opt.classList.remove('border-blue-600');
+        opt.querySelector('.payment-radio-dot').classList.add('hidden');
+      });
+
+      option.classList.add('border-blue-600');
+      option.querySelector('.payment-radio-dot').classList.remove('hidden');
+
+      const method = option.dataset.method;
+      mastercardForm.classList.toggle('hidden', method !== "mastercard");
+      ecocashForm.classList.toggle('hidden', method !== "ecocash");
+
+      methodInput.value = method === "mastercard" ? "1" : "2";
+    });
+  });
+</script>
+
+    <footer class="bg-white border-t border-gray-200 mt-12">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <a href="home.php" class="footer-logo">Bookit</a>
+                    <p class="footer-description">
+                        Making property rental easy and accessible for everyone.
+                    </p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="home.php">Home</a></li>
+                        <li><a href="explore.php">Explore</a></li>
+                        <li><a href="dashboard.php">Dashboard</a></li>
+                        <li><a href="submit.html">List Property</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Get in Touch</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© 2025 Bookit. All rights reserved.</p>
+                <div class="flex items-center space-x-6">
+                    <div class="w-6 h-6 flex items-center justify-center text-gray-500">
+                        <i class="ri-visa-line"></i>
+                    </div>
+                    <div class="w-6 h-6 flex items-center justify-center text-gray-500">
+                        <i class="ri-mastercard-line"></i>
+                    </div>
+                    <div class="w-6 h-6 flex items-center justify-center text-gray-500">
+                        <i class="ri-paypal-line"></i>
+                    </div>
+                    <div class="w-6 h-6 flex items-center justify-center text-gray-500">
+                        <i class="ri-secure-payment-line"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div id="cvv-tooltip" class="hidden absolute bg-gray-800 text-white text-xs rounded py-2 px-3 max-w-xs">
+        The CVV is the 3-digit security code on the back of your card
+    </div>
+
+    <script id="card-form-validation">
+        // Add your card form validation script here
+    </script>
+
+    <script id="ecocash-form-validation">
+        // Add your EcoCash form validation script here
+    </script>

@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Submit Property - Bookit</title>
+    <meta name="description" content="Submit your property to be listed on Bookit." />
+    <meta name="author" content="Bookit" />
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <div class="header-inner">
+          <div class="logo">
+            <a href="home.php">Bookit</a>
+          </div>
+          
+          <nav class="desktop-nav">
+            <a href="home.php">Home</a>
+            <a href="explore.php">Explore</a>
+            <a href="about.php">About</a>
+          </nav>
+          
+          
+          
+          <button class="mobile-menu-button" id="mobileMenuButton">
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+      </div>
+      
+      <!-- Mobile Menu -->
+      <div class="mobile-menu" id="mobileMenu">
+        <div class="container">
+          <div class="mobile-menu-header">
+            <div class="logo">Bookit</div>
+            <button class="mobile-menu-close" id="mobileMenuClose">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+          
+          <nav class="mobile-nav">
+            <a href="home.php">Home</a>
+            <a href="explore.php">Explore</a>
+            <a href="about.php">About</a>
+            
+            <div class="mobile-auth">
+              <button class="btn btn-outline btn-full">Login</button>
+              <button class="btn btn-primary btn-full">Sign Up</button>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="submit-property">
+        <div class="container">
+          <div class="section-header">
+            <h1>Submit Your Property</h1>
+            <p>List your property on Bookit and reach thousands of potential guests</p>
+          </div>
+          
+          <div class="submit-form-container">
+            <form id="propertySubmitForm" class="submit-form" method="POST" action="store_listings.php" enctype="multipart/form-data">
+              <div class="form-section">
+                <h2 class="form-section-title" >Basic Information</h2>
+                
+                <div class="form-group">
+                  <label for="propertyTitle">Property Title*</label>
+                  <input type="text" id="propertyTitle" name="title" placeholder="Full House for renting " required>
+                </div>
+                
+                <div class="form-group">
+                  <label for="propertyType">Property Type*</label>
+                  <select id="propertyType" name="type" required>
+                    <option value="">Select property type</option>
+                    <option value="apartment">Apartment</option>
+                    <option value="house">House</option>
+                    <option value="villa">Single Room</option>
+                    <option value="cabin">Cabin</option>
+                    <option value="cottage">Cottage</option>
+                    <option value="loft">Shared Room</option>
+                    <option value="bungalow">Bungalow</option>
+                  </select>
+                </div>
+                
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="propertyPrice">Price per month($)*</label>
+                    <input type="number" id="propertyPrice" name="price" min="1" required>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="propertyBedrooms">Bedrooms*</label>
+                    <input type="number" id="propertyBedrooms" name="bedrooms" min="1" max="20" required>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="propertyBathrooms">Bathrooms*</label>
+                    <input type="number" id="propertyBathrooms" name="bathrooms" min="1" max="20" required>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="form-section">
+                <h2 class="form-section-title">Location Details</h2>
+                
+                <div class="form-group">
+                  <label for="propertyAddress">Address*</label>
+                  <input type="text" id="propertyAddress" name="address" required>
+                </div>
+                
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="propertyCity">City*</label>
+                    <input type="text" id="propertyCity" name="city" required>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="propertyState">State/Province*</label>
+                    <input type="text" id="propertyState" name="state" required>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="propertyZip">Postal Code*</label>
+                    <input type="text" id="propertyZip" name="zip" required>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="propertyCountry">Country*</label>
+                    <input type="text" id="propertyCountry" name="country" required>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="form-section">
+                <h2 class="form-section-title">Property Details</h2>
+                
+                <div class="form-group">
+                  <label for="propertyDescription">Description*</label>
+                  <textarea id="propertyDescription" name="description" rows="5" required></textarea>
+                </div>
+                
+                <div class="form-group">
+                  <label>Amenities</label>
+                  <div class="checkbox-grid">
+                    <div class="checkbox-item">
+                      <input type="checkbox" id="amenityWifi" name="amenities[]" value="wifi">
+                      <label for="amenityWifi">Wi-Fi</label>
+                    </div>
+                    <div class="checkbox-item">
+                      <input type="checkbox" id="amenityAC" name="amenities[]" value="solar">
+                      <label for="amenityAC">Electricity/Solar</label>
+                    </div>
+                    <div class="checkbox-item">
+                      <input type="checkbox" id="amenityKitchen" name="amenities[]" value="kitchen">
+                      <label for="amenityKitchen">Kitchen</label>
+                    </div>
+                    <div class="checkbox-item">
+                      <input type="checkbox" id="amenityWasher" name="amenities[]" value="backyard">
+                      <label for="amenityWasher">Backyard/Workspace</label>
+                    </div>
+                    <div class="checkbox-item">
+                      <input type="checkbox" id="amenityParking" name="amenities[]" value="parking">
+                      <label for="amenityParking">Parking</label>
+                    </div>
+                    <div class="checkbox-item">
+                      <input type="checkbox" id="amenityPool" name="amenities[]" value="pool">
+                      <label for="amenityPool">Pool</label>
+                    </div>
+                    <div class="checkbox-item">
+                      <input type="checkbox" id="amenityTV" name="amenities[]" value="water">
+                      <label for="amenityTV">Backup Water Supply</label>
+                    </div>
+                    <div class="checkbox-item">
+                      <input type="checkbox" id="amenityWorkspace" name="amenities[]" value="durawall">
+                      <label for="amenityWorkspace">Durawall</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+  <label>Rental Conditions</label>
+  <div class="checkbox-grid">
+    <div class="checkbox-item">
+      <input type="checkbox" id="conditionPetsAllowed" name="rental_conditions[]" value="pets_allowed">
+      <label for="conditionPetsAllowed">Pets Allowed</label>
+    </div>
+
+    <div class="checkbox-item">
+      <input type="checkbox" id="conditionNoPets" name="rental_conditions[]" value="no_pets">
+      <label for="conditionNoPets">No Pets</label>
+    </div>
+
+    <div class="checkbox-item">
+      <input type="checkbox" id="conditionShortTerm" name="rental_conditions[]" value="short_term">
+      <label for="conditionShortTerm">Short Term</label>
+    </div>
+
+    <div class="checkbox-item">
+      <input type="checkbox" id="conditionLongTerm" name="rental_conditions[]" value="long_term">
+      <label for="conditionLongTerm">Long Term</label>
+    </div>
+
+    <div class="checkbox-item">
+      <input type="checkbox" id="conditionDepositRequired" name="rental_conditions[]" value="deposit_required">
+      <label for="conditionDepositRequired">Deposit Required</label>
+    </div>
+
+    <div class="checkbox-item">
+      <input type="checkbox" id="conditionStudents" name="rental_conditions[]" value="students">
+      <label for="conditionStudents">Students</label>
+    </div>
+
+    <div class="checkbox-item">
+      <input type="checkbox" id="conditionCouples" name="rental_conditions[]" value="couples">
+      <label for="conditionCouples">Couples</label>
+    </div>
+
+    <div class="checkbox-item">
+      <input type="checkbox" id="conditionSingles" name="rental_conditions[]" value="singles">
+      <label for="conditionSingles">Singles</label>
+    </div>
+
+    <div class="checkbox-item">
+      <input type="checkbox" id="conditionBillsIncluded" name="rental_conditions[]" value="bills_included">
+      <label for="conditionBillsIncluded">Bills Included</label>
+    </div>
+
+    <div class="checkbox-item">
+      <input type="checkbox" id="conditionBillsExcluded" name="rental_conditions[]" value="bills_excluded">
+      <label for="conditionBillsExcluded">Bills Excluded</label>
+    </div>
+  </div>
+</div>
+
+              
+              <div class="form-section">
+                <h2 class="form-section-title">Images</h2>
+                
+                <div class="form-group">
+                  <label for="propertyImages">Upload Images (Max 5)</label>
+                  <input type="file" name="images[]" id="propertyImages"  accept="image/*" multiple>
+                  <div class="image-preview" id="imagePreview"></div>
+                </div>
+              </div>
+              
+              <div class="form-actions">
+                <button type="reset" class="btn btn-outline">Reset Form</button>
+                <button type="submit" class="btn btn-primary">Submit Property</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <!-- Company Info -->
+          <div class="footer-column">
+            <a href="home.php" class="footer-logo">Bookit</a>
+            <p class="footer-description">
+              Find and book your perfect accommodation anywhere. From luxury homes to cozy rooms, we've got you covered.
+            </p>
+          </div>
+
+          <!-- Quick Links -->
+          <div class="footer-column">
+            <h3>Quick Links</h3>
+            <ul class="footer-links">
+              <li><a href="home.php">Home</a></li>
+              <li><a href="explore.php">Explore</a></li>
+              <li><a href="locations.html">Locations</a></li>
+              <li><a href="about.php">About Us</a></li>
+            </ul>
+          </div>
+
+          <!-- Support Links -->
+          <div class="footer-column">
+            <h3>Support</h3>
+            <ul class="footer-links">
+              <li><a href="help.html">Help Center</a></li>
+              <li><a href="terms.html">Terms of Service</a></li>
+              <li><a href="privacy.html">Privacy Policy</a></li>
+              <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>&copy; 2025 Bookit. All rights reserved.</p>
+          <div class="social-icons">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://kit.fontawesome.com/your-code-here.js" crossorigin="anonymous"></script>
+    <script src="data.js"></script>
+    
+  </body>
+</html>
