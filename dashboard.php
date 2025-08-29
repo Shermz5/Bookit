@@ -143,7 +143,7 @@ $conn->close();
       <div class="container">
         <div class="header-inner">
           <div class="logo">
-            <a href="index.html">
+            <a href="home.php">
               <span class="logo-text">Bookit</span>
             </a>
           </div>
@@ -315,7 +315,7 @@ $conn->close();
       <div class="container">
         <div class="footer-grid">
           <div class="footer-column">
-            <a href="index.html" class="footer-logo">Bookit</a>
+            <a href="home.php" class="footer-logo">Bookit</a>
             <p class="footer-description">
               Making property rental easy and accessible for everyone.
             </p>
@@ -324,7 +324,7 @@ $conn->close();
           <div class="footer-column">
             <h3>Quick Links</h3>
             <ul class="footer-links">
-              <li><a href="index.html">Home</a></li>
+              <li><a href="home.php">Home</a></li>
               <li><a href="explore.php">Explore</a></li>
               <li><a href="dashboard.php">Dashboard</a></li>
               <li><a href="submit.html">List Property</a></li>
